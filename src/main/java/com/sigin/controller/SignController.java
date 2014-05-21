@@ -1,5 +1,6 @@
 package com.sigin.controller;
 
+import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
 import com.sigin.service.UserService;
 import com.sigin.util.CookieUtil;
@@ -66,6 +67,11 @@ public class SignController {
         User queryUser = userService.updateUser(user);
         return result;
     }
-
+    @ResponseBody
+    @RequestMapping(value = "/save-sign-record",method = RequestMethod.POST)
+    public String saveSignRecord(SignRecord record){
+        String result = "success";
+        return result;
+    }
 
 }

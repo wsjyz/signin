@@ -1,5 +1,6 @@
 package com.sigin.dao;
 
+import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
 
 /**
@@ -12,4 +13,6 @@ public interface UserDAO {
     User updateUser(final User user);
 
     User findUserById(String userId);
+
+    void saveSignRecord(SignRecord record);
 }

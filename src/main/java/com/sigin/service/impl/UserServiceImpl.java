@@ -1,6 +1,7 @@
 package com.sigin.service.impl;
 
 import com.sigin.dao.UserDAO;
+import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
 import com.sigin.service.UserService;
 import com.sigin.util.UUIDGen;
@@ -30,5 +31,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(String userId) {
         return userDAO.findUserById(userId);
+    }
+
+    @Override
+    public void saveSignRecord(SignRecord record) {
+        userDAO.saveSignRecord(record);
     }
 }

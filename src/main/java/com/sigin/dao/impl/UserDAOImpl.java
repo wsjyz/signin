@@ -2,6 +2,7 @@ package com.sigin.dao.impl;
 
 import com.sigin.dao.BaseDAO;
 import com.sigin.dao.UserDAO;
+import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -74,5 +75,18 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
             user = userList.get(0);
         }
         return user;
+    }
+
+    @Override
+    public void saveSignRecord(final SignRecord record) {
+        StringBuilder sql = new StringBuilder("INSERT INTO sign_record (record_id,user_id,opt_time) values (?,?,?)");
+        getJdbcTemplate().update(sql.toString(),new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1,record.getRecordId());
+                ps.setString(2,record.getUserId());
+                ps.setString(3,record.getOptTime());
+            }
+        });
     }
 }
