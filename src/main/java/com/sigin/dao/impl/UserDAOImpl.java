@@ -79,14 +79,25 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public void saveSignRecord(final SignRecord record) {
-        StringBuilder sql = new StringBuilder("INSERT INTO sign_record (record_id,user_id,opt_time) values (?,?,?)");
+        StringBuilder sql = new StringBuilder("INSERT INTO sign_record (record_id,user_id,opt_time,opt_date) values (?,?,?,?)");
         getJdbcTemplate().update(sql.toString(),new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
                 ps.setString(1,record.getRecordId());
                 ps.setString(2,record.getUserId());
                 ps.setString(3,record.getOptTime());
+                ps.setString(4,record.getOptDate());
             }
         });
+    }
+    public int findTodaySignCount(){
+        StringBuilder sql = new StringBuilder("select count(user_id) from ")
+                .append("sign_record").append(" group by opt_date");
+        List<Integer> list = getJdbcTemplate().queryForList(sql.toString(),Integer.class);
+        Integer count = 0;
+        if(list != null && !list.isEmpty()){
+            count = list.get(0);
+        }
+        return count;
     }
 }

@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
     public void saveSignRecord(SignRecord record) {
         userDAO.saveSignRecord(record);
     }
+
+    @Override
+    public int findTodaySignCount() {
+        return userDAO.findTodaySignCount();
+    }
 }

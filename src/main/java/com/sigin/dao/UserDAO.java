@@ -15,4 +15,6 @@ public interface UserDAO {
     User findUserById(String userId);
 
     void saveSignRecord(SignRecord record);
+
+    int findTodaySignCount();
 }

@@ -23,13 +23,31 @@
         }
     </style>
     <script src="${request.contextPath}/js/jquery-2.0.0.min.js"></script>
+    <script src="${request.contextPath}/js/bootstrap.min.js"></script>
     <script type="application/javascript">
         $(function(){
-
+            $.ajax({
+                url: "${request.contextPath}/sign/find-sign-count"
+            }).done(function(msg) {
+                $('#tipNum').text(msg);
+            });
 
         })
         function toStep2(){
             window.location.href = '${request.contextPath}/sign/to-step2/'+$('#userId').val();
+        }
+        function saveRecord(){
+            var userId = $("#userId").val();
+            var oldNum = parseInt($('#tipNum').text());
+            $('#tipNum').text(oldNum + 1);
+            $('#signBtn').attr('disabled','disabled');
+            $.ajax({
+                type: "POST",
+                url: "${request.contextPath}/sign/save-sign-record",
+                data: { userId: userId }
+            }).done(function( msg ) {
+                $('#bs-example-modal-sm').modal('show');
+            });
         }
     </script>
     <!-- Bootstrap core CSS -->
@@ -38,13 +56,22 @@
 </head>
 <body>
 <input type="hidden" id="userId" value="${userId}">
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            签到成功！
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="header">
         <h3 class="text-muted"></h3>
     </div>
     <div class="jumbotron">
         <h1>GeassCC</h1>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">签到<span id="tipNum" class="num">10</span></a></p>
+        <p><a id="signBtn" class="btn btn-lg btn-success" href="#"
+              data-toggle="modal" data-target=".bs-example-modal-sm"
+              role="button" onclick="javascript:saveRecord();">签到<span id="tipNum" class="num">10</span></a></p>
     </div>
 
     <div class="row">

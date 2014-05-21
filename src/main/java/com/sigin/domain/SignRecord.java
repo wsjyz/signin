@@ -8,6 +8,15 @@ public class SignRecord {
     private String recordId;
     private String userId;
     private String optTime;
+    private String optDate;
+
+    public String getOptDate() {
+        return optDate;
+    }
+
+    public void setOptDate(String optDate) {
+        this.optDate = optDate;
+    }
 
     public String getRecordId() {
         return recordId;

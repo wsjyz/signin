@@ -4,6 +4,7 @@ import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
 import com.sigin.service.UserService;
 import com.sigin.util.CookieUtil;
+import com.sigin.util.UUIDGen;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by dam on 14-5-20.
@@ -71,7 +74,21 @@ public class SignController {
     @RequestMapping(value = "/save-sign-record",method = RequestMethod.POST)
     public String saveSignRecord(SignRecord record){
         String result = "success";
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(new Date());
+        record.setOptTime(currentTime);
+        record.setOptDate(currentTime.substring(0, 10));
+        record.setRecordId(UUIDGen.genShortPK());
+        userService.saveSignRecord(record);
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/find-sign-count")
+    public int findTodaySignCount(){
+        int count = 0;
+        count = userService.findTodaySignCount();
+        return count;
     }
 
 }
