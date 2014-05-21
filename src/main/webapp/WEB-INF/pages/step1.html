@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="${request.contextPath}/images/favicon.png">
+
+    <title>填写</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="${request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="${request.contextPath}/css/signin.css" rel="stylesheet">
+    <script src="${request.contextPath}/js/jquery-2.0.0.min.js"></script>
+    <script type="application/javascript">
+        $(function(){
+
+
+        })
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin" method="post" action="${request.contextPath}/sign/to-step2">
+        <h2 class="form-signin-heading">请填写相应信息</h2>
+        <input type="text" name="userName" class="form-control" placeholder="姓名" required autofocus>
+        <input type="text" name="phoneNum" class="form-control" placeholder="手机号" required>
+        <label class="checkbox">
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >下一步</button>
+    </form>
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

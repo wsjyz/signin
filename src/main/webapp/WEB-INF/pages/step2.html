@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="${request.contextPath}/images/favicon.png">
+
+    <title>填写</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="${request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="${request.contextPath}/css/signin.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-horizontal" role="form" method="post" action="${request.contextPath}/sign/save-user">
+        <input type="hidden" name="userId" value="${user.userId}"/>
+        <div class="form-group">
+            <label for="inputUserName" class="col-sm-2 control-label">姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" name="userName" value="${user.userName}" class="form-control" id="inputUserName" placeholder="姓名">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPhoneNum" class="col-sm-2 control-label">手机号：</label>
+            <div class="col-sm-10">
+                <input type="text" name="phoneNum" value="${user.phoneNum}" class="form-control" id="inputPhoneNum" placeholder="手机号">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputCorpName" class="col-sm-2 control-label">公司：</label>
+            <div class="col-sm-10">
+                <input type="text" name="corpName" value="${user.corpName}" class="form-control" id="inputCorpName" placeholder="公司">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPosition" class="col-sm-2 control-label">职位：</label>
+            <div class="col-sm-10">
+                <input type="text" name="position" value="${user.position}" class="form-control" id="inputPosition" placeholder="职位">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">邮箱：</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" value="${user.email}" class="form-control" id="inputEmail" placeholder="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputWeixin" class="col-sm-2 control-label">微信号：</label>
+            <div class="col-sm-10">
+                <input type="text" name="weixin" value="${user.weixin}" class="form-control" id="inputWeixin" placeholder="微信号">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress" class="col-sm-2 control-label">地址：</label>
+            <div class="col-sm-10">
+                <input type="text" name="address" value="${user.address}" class="form-control" id="inputAddress" placeholder="地址">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保存</button>
+            </div>
+        </div>
+    </form>
+
+</div> <!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>
