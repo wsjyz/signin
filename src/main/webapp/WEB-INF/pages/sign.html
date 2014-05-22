@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>签到</title>
     <style type="text/css">
         span.num{
             background-color: #f00;
@@ -26,6 +31,14 @@
     <script src="${request.contextPath}/js/bootstrap.min.js"></script>
     <script type="application/javascript">
         $(function(){
+            var userId = $("#userId").val();
+            $.ajax({
+                url: "${request.contextPath}/sign/check-sign/"+userId
+            }).done(function(msg) {
+                if(msg){
+                    $('#signBtn').attr('disabled','disabled');
+                }
+            });
             $.ajax({
                 url: "${request.contextPath}/sign/find-sign-count"
             }).done(function(msg) {
@@ -56,10 +69,17 @@
 </head>
 <body>
 <input type="hidden" id="userId" value="${userId}">
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            签到成功！
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4>
+            </div>
+            <div class="modal-body">
+                签到成功！
+            </div>
         </div>
     </div>
 </div>
@@ -67,17 +87,17 @@
     <div class="header">
         <h3 class="text-muted"></h3>
     </div>
-    <div class="jumbotron">
-        <h1>GeassCC</h1>
-        <p><a id="signBtn" class="btn btn-lg btn-success" href="#"
+    <div style="border-radius: 6px;background-color: #eeeeee">
+        <p class="text-left">&nbsp;</p>
+        <p class="text-center">
+            <a id="signBtn" class="btn btn-lg btn-success" href="#"
               data-toggle="modal" data-target=".bs-example-modal-sm"
-              role="button" onclick="javascript:saveRecord();">签到<span id="tipNum" class="num">10</span></a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-md-8"></div>
-        <div class="col-xs-6 col-md-4"><a href="#" onclick="javascript:toStep2();"><img
-                src="${request.contextPath}/images/user_head.png"/>&nbsp;个人资料</a></div>
+              role="button" onclick="javascript:saveRecord();">签&nbsp;&nbsp;到<span id="tipNum" class="num">10</span></a>
+        </p>
+        <p class="text-center" style="font-size: 30px;">GeassCC</p>
+        <p class="text-right"><a href="#" onclick="javascript:toStep2();"><img
+                style="width: 30px;height: 30px;"
+                src="${request.contextPath}/images/user_head.png"/>&nbsp;<small>个人资料</small></a></p>
     </div>
 </div>
 <!-- /container -->

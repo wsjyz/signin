@@ -87,8 +87,18 @@ public class SignController {
     @RequestMapping(value = "/find-sign-count")
     public int findTodaySignCount(){
         int count = 0;
-        count = userService.findTodaySignCount();
+        count = userService.findTodaySignCount(null);
         return count;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/check-sign/{userId}")
+    public boolean checkUserIsSign(@PathVariable String userId){
+        boolean signed = false;
+        int count = userService.findTodaySignCount(userId);
+        if(count > 0){
+            signed = true;
+        }
+        return signed;
     }
 
 }

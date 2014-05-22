@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findTodaySignCount() {
-        return userDAO.findTodaySignCount();
+    public int findTodaySignCount(String userId) {
+        return userDAO.findTodaySignCount(userId);
     }
 }

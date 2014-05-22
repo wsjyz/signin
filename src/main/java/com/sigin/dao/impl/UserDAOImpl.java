@@ -4,6 +4,7 @@ import com.sigin.dao.BaseDAO;
 import com.sigin.dao.UserDAO;
 import com.sigin.domain.SignRecord;
 import com.sigin.domain.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,10 +94,20 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
             }
         });
     }
-    public int findTodaySignCount(){
+    public int findTodaySignCount(String userId){
+        List<String> args = new ArrayList<String>();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf.format(new Date());
+        args.add(currentDate);
+
         StringBuilder sql = new StringBuilder("select count(user_id) from ")
-                .append("sign_record").append(" group by opt_date");
-        List<Integer> list = getJdbcTemplate().queryForList(sql.toString(),Integer.class);
+                .append("sign_record").append(" where opt_date=?");
+        if(StringUtils.isNotBlank(userId)){
+            sql.append(" and user_id=?");
+            args.add(userId);
+        }
+
+        List<Integer> list = getJdbcTemplate().queryForList(sql.toString(),args.toArray(),Integer.class);
         Integer count = 0;
         if(list != null && !list.isEmpty()){
             count = list.get(0);

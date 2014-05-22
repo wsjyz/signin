@@ -16,5 +16,5 @@ public interface UserService {
 
     void saveSignRecord(SignRecord record);
 
-    int findTodaySignCount();
+    int findTodaySignCount(String userId);
 }
